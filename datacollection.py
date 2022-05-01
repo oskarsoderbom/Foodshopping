@@ -5,7 +5,8 @@ import pandas as pd
 
 
 def read_data(path: str) -> pd.DataFrame:
-    """ Reading recipes"""
+    """ Reading recipes
+    this should be redone to read directly from google drive"""
     recipes = pd.read_csv(path)
     return recipes
 

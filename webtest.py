@@ -1,12 +1,9 @@
-
 from bs4 import BeautifulSoup
 import requests
 
 def get_recipe_ingredients(recipeurl: str) -> list:
     """Function used to take a list of recipeurls and return all 
-    ingredients, collect them in one dataset.
-    Hopefully used for a later function which will fill an
-    onlinebasket of items automatically
+    Right now working for undertian.com
     """
 
     if recipeurl.__contains__('undertian'):
@@ -33,7 +30,7 @@ def get_recipe_ingredients(recipeurl: str) -> list:
                                         replace("\\u00f6", 'ö').
                                         replace("\\u00e5", 'å').
                                         replace("\\u00e4",'ä').
-                                        replace("é","e").
+                                        replace("\\u00e9","è").
                                         replace("att steka i", "").
                                         replace("Salt &", "").
                                         replace("Olja", ""))
@@ -42,8 +39,8 @@ def get_recipe_ingredients(recipeurl: str) -> list:
 
         cleaner = []
         for i in rough_ingredients:
-            x = i[0].split(",")
-            cleaner.append(x)
+            roughlist = i[0].split(",")
+            cleaner.append(roughlist)
 
         del cleaner[len(cleaner)-1][4:]
 
@@ -66,19 +63,6 @@ def several_recipes(recipelist: list) -> list:
     flat_list = [item for sublist in all_items for item in sublist] 
     
     #Getting rid of duplicates for now, should be handled accordingly later on
-    shoppinglist = list(set(flat_list))
+    #shoppinglist = list(set(flat_list))
     return flat_list
 
-manyrecipes = ['https://undertian.com/recept/pasta-med-ajvar-relish-och-aubergine/'
-, 'https://undertian.com/recept/potatispaj-med-dill-och-tangkaviar/',
-'https://undertian.com/recept/havrerisbiffar-med-fetaost-i-pitabrod/',
-'https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
-
-fullist = several_recipes(manyrecipes)
-
-"""Hopefully autocomplete shoppinglist with a full basket
-of items from ICA.SE"""
-
-
-
-#driver.quit()

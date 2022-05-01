@@ -1,15 +1,17 @@
-from datacollection import read_data, select_random_recipes
+"""Testing the foodscripts"""
 from webauto import fillshoppinglist
-from webtest import get_recipe_ingredients, several_recipes
+from webtest import several_recipes
 
 
 
-def main():
-    pass
 
 
 
-if __name__ == "__main__":
-    main()
+manyrecipes = ['https://undertian.com/recept/pasta-med-ajvar-relish-och-aubergine/'
+, 'https://undertian.com/recept/potatispaj-med-dill-och-tangkaviar/',
+'https://undertian.com/recept/havrerisbiffar-med-fetaost-i-pitabrod/',
+'https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
 
+onerecipe = ['https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
 
+fillshoppinglist(several_recipes(manyrecipes))

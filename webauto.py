@@ -28,7 +28,11 @@ def fillshoppinglist(fullist):
     for i in fullist:
         if i != ' ':
             print(i)
-            driver.find_element_by_xpath('//*[@id="application-bar"]/div[1]/div/div[2]/form/input[1]').send_keys(i)
+            try:
+                driver.find_element_by_xpath('//*[@id="application-bar"]/div[1]/div/div[2]/form/input[1]').send_keys(i)
+            except NoSuchElementException:
+                driver.refresh()
+                notfoundlist.append(i)
             sleep(1)
            
         #första gången man väljer en vara
@@ -46,7 +50,10 @@ def fillshoppinglist(fullist):
             except NoSuchElementException:
                 pass
             sleep(1.5)
-
-    print("Shopping list done, please complete the order in your browser")
+   
+    timetocomplete = 300
+    print(f"Shopping list done, please complete the order in your browser, you need to interact with the browser in {timetocomplete} seconds before it closes")
     print("These products could not be found:")
     print(notfoundlist)
+    
+    sleep(timetocomplete)
