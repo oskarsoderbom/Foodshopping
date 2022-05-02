@@ -15,7 +15,11 @@ def get_recipe_ingredients(recipeurl: str) -> list:
         soup = BeautifulSoup(page.content, "html.parser")
 
         # Alternativt sätt att göra det på, kan behöva justeras lite om det finns flera
-        # 'receptgrupper'.
+        # 'receptgrupper'. Skapar en lista med dict t.ex.
+        # [
+        #   {"amount": 1.0, "measurement": "st", "description": "lök, gul"},
+        #   {"amount": 4.0, "measurement": "port", "description": "pasta"}
+        # ]
         MEASUREMENTS = ["dl", "st", "msk", "tsk", "port"]
         ingredient_spans = soup.find_all("span", {"itemprop": "recipeIngredient"})
         ingredients = []
