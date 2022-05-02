@@ -1,6 +1,7 @@
 """Testing the foodscripts"""
 from shopping import fillshoppinglist
 from ingredients import several_recipes
+from icarecipes import get_ica
 
 def main() -> None:
     "Calling all functions"
@@ -11,8 +12,8 @@ def main() -> None:
     'https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
 
     onerecipe = ['https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
-
-    fillshoppinglist(several_recipes(onerecipe))
+    icarecipe = 'https://www.ica.se/recept/klassiska-kottbullar-712807/'
+    fillshoppinglist(get_ica(icarecipe))
 
 if __name__ == "__main__":
     main()
