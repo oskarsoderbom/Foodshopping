@@ -12,18 +12,9 @@ def fillshoppinglist(fullist):
     
     driver = webdriver.Chrome(r'/Users/oskarsoderbom/chromedriver')
 
-    driver.get('https://www.ica.se/')
+    driver.get('https://www.ica.se/handla/maxi-ica-stormarknad-orebro-boglundsangen-id_01093/')
     sleep(2)
-    driver.find_element_by_xpath('//*[@id="onetrust-button-group"]/div').click()
-    print('cookies accepted')
-    driver.find_element_by_xpath('/html/body/div[1]/div/header/div[2]/div/div/div[2]/a').click()
-    sleep(1)
-    driver.find_element_by_xpath('//*[@id="zipcode"]').send_keys('70358')
-    sleep(1)
-    driver.find_element_by_xpath('//*[@id="store-selector-app"]/div/div[2]/button[1]').click()
-    driver.find_element_by_xpath('//*[@id="store-selector-app"]/div/div[2]/ul/li[1]/div[3]/button').click()
-    sleep(1)
-
+    
     notfoundlist = []
     for i in fullist:
         if i != ' ':

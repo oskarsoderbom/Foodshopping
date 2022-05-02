@@ -2,7 +2,8 @@
 from shopping import fillshoppinglist
 from ingredients import several_recipes
 
-def main():
+def main() -> None:
+    "Calling all functions"
 
     manyrecipes = ['https://undertian.com/recept/pasta-med-ajvar-relish-och-aubergine/'
     , 'https://undertian.com/recept/potatispaj-med-dill-och-tangkaviar/',
@@ -11,7 +12,7 @@ def main():
 
     onerecipe = ['https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
 
-    fillshoppinglist(several_recipes(manyrecipes))
+    fillshoppinglist(several_recipes(onerecipe))
 
-if __name__ == "__main__";
+if __name__ == "__main__":
     main()
