@@ -4,6 +4,7 @@ of items from ICA.SE"""
 from time import sleep
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 
 
 
@@ -21,6 +22,9 @@ def fillshoppinglist(fullist):
             print(i)
             try:
                 driver.find_element_by_xpath('//*[@id="application-bar"]/div[1]/div/div[2]/form/input[1]').send_keys(i)
+                #driver.find_element(By.XPATH, "//input[@placeholder='Sök produkt/kategori']").send_keys(i)
+                #driver.find_element(By.NAME, "seach").send_keys(i)
+                #driver.find_element(By.ID, "application-bar").find_element(By.CSS_SELECTOR, "input[type=text]").send_keys(i)
             except NoSuchElementException:
                 driver.refresh()
                 notfoundlist.append(i)
