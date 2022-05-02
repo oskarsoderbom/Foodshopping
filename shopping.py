@@ -23,7 +23,7 @@ def fillshoppinglist(fullist):
             try:
                 driver.find_element_by_xpath('//*[@id="application-bar"]/div[1]/div/div[2]/form/input[1]').send_keys(i)
                 #driver.find_element(By.XPATH, "//input[@placeholder='Sök produkt/kategori']").send_keys(i)
-                #driver.find_element(By.NAME, "seach").send_keys(i)
+                #driver.find_element(By.NAME, "search").send_keys(i)
                 #driver.find_element(By.ID, "application-bar").find_element(By.CSS_SELECTOR, "input[type=text]").send_keys(i)
             except NoSuchElementException:
                 driver.refresh()
