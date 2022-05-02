@@ -14,6 +14,30 @@ def get_recipe_ingredients(recipeurl: str) -> list:
         page = requests.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
 
+        # Alternativt sätt att göra det på, kan behöva justeras lite om det finns flera
+        # 'receptgrupper'.
+        MEASUREMENTS = ["dl", "st", "msk", "tsk", "port"]
+        ingredient_spans = soup.find_all("span", {"itemprop": "recipeIngredient"})
+        ingredients = []
+        for ing in ingredient_spans:
+            ing_raw: str = ing.text
+            measurements_mentioned = [m for m in ing_raw.split() if m.lower() in MEASUREMENTS]
+            if measurements_mentioned:
+                measurement = measurements_mentioned[0]
+                measurement_index = ing_raw.find(measurement)
+            
+                try:
+                    amount = float("".join(ing_raw[:measurement_index].split()))
+                except ValueError:
+                    amount = 0.0
+
+                desc = ing_raw[measurement_index+len(measurement):].strip()
+                ingredients.append(
+                    {"amount": amount,
+                    "measurement": measurement,
+                    "description": desc}
+                )
+
         results = soup.find(class_="recept-box recept-ingredients")
         ingredients_box = results.find_all(name='script')
         startlist = list(ingredients_box)
