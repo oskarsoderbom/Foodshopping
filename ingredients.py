@@ -1,3 +1,6 @@
+"""Functions used in order to retrieve ingredients data"""
+
+
 from bs4 import BeautifulSoup
 import requests
 
