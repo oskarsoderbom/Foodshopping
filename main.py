@@ -1,19 +1,20 @@
 """Testing the foodscripts"""
 from shopping import fillshoppinglist
-from ingredients import several_recipes
-from icarecipes import get_ica
+from recipeselection import read_data, select_random_recipes
+from ingredientsretrieve import get_all_ingredients
 
 def main() -> None:
     "Calling all functions"
 
-    manyrecipes = ['https://undertian.com/recept/pasta-med-ajvar-relish-och-aubergine/'
-    , 'https://undertian.com/recept/potatispaj-med-dill-och-tangkaviar/',
-    'https://undertian.com/recept/havrerisbiffar-med-fetaost-i-pitabrod/',
-    'https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
+    recipelist = read_data('/Users/oskarsoderbom/Downloads/recipes - recipes-3.csv')
+    randomrecipelist, allrecipes = select_random_recipes(recipedata=recipelist, n_fish=1, n_chicken=1, n_meat=1, n_veg=2)
 
-    onerecipe = ['https://undertian.com/recept/kramig-belugapastasas-med-paprika/']
-    icarecipe = 'https://www.ica.se/recept/klassiska-kottbullar-712807/'
-    fillshoppinglist(get_ica(icarecipe))
+    print(allrecipes)
+
+    print()
+
+
+    fillshoppinglist(get_all_ingredients(randomrecipelist))
 
 if __name__ == "__main__":
     main()

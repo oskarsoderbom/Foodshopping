@@ -28,7 +28,6 @@ def select_random_recipes(recipedata: pd.DataFrame, n_fish: int,
 
     all_rand_recipes = pd.concat([fish_random, chicken_random, meat_random, veg_random])
 
-    return all_rand_recipes
+    all_random_recipes_links = all_rand_recipes['Länk'].to_list()
+    return all_random_recipes_links, all_rand_recipes
 
-recipelist = read_data('/Users/oskarsoderbom/Downloads/recipes - recipes.csv')
-print(select_random_recipes(recipedata=recipelist, n_fish=1, n_chicken=1, n_meat=1, n_veg=2))
